@@ -1,8 +1,12 @@
 package main.list.Ordenacao;
 
-public class Pessoa implements Comparable<Pessoa>{
-    private String nome;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
+public class Pessoa implements Comparable<Pessoa> {
+    //atributos
+    private String nome;
     private int idade;
     private double altura;
 
@@ -10,6 +14,11 @@ public class Pessoa implements Comparable<Pessoa>{
         this.nome = nome;
         this.idade = idade;
         this.altura = altura;
+    }
+
+    @Override
+    public int compareTo(Pessoa p) {
+        return Integer.compare(idade, p.getIdade());
     }
 
     public String getNome() {
@@ -32,10 +41,11 @@ public class Pessoa implements Comparable<Pessoa>{
                 ", altura=" + altura +
                 '}';
     }
+}
 
-
+class ComparatorPorAltura implements Comparator<Pessoa> {
     @Override
-    public int compareTo(Pessoa pessoa) {
-        return Integer.compare(idade, pessoa.getIdade());
+    public int compare(Pessoa p1, Pessoa p2) {
+        return Double.compare(p1.getAltura(), p2.getAltura());
     }
 }
